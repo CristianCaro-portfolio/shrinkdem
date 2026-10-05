@@ -69,8 +69,8 @@ Full tables: `results/summary.md`.
 
 ```bash
 pip install -r requirements.txt
-python -m pytest -q tests            # 4 checks on simulated data
-python examples/quickstart.py        # 30-second demo, no download
+python examples/quickstart.py        # real Sycamore run bundled in sample_data/, no download
+python -m pytest -q tests            # 4 checks on simulated data, where the true error model is known
 
 python scripts/download_data.py      # 315 MB from Zenodo into data/raw
 python scripts/run_benchmark.py      # about 20 minutes on one core (add --distance 5 for a 7-minute run)
@@ -79,6 +79,9 @@ python scripts/run_drift.py --distance 3 --min-rounds 21 --out results/drift_d3.
 python scripts/run_monitor.py
 python scripts/make_report.py        # writes results/summary.md and the figure
 ```
+
+Every result in this README comes from real hardware data. Simulation is used only in the
+tests, because that is the one place where the true answer is known and can be checked.
 
 ## Use it
 
@@ -98,6 +101,7 @@ predictions = sd.decode(topology, prior, exp.detections[30000:])
 - `shrinkdem/monitor.py` drift score and burst finder
 - `shrinkdem/io.py` loader for the Google dataset
 - `scripts/` benchmark, drift replay, monitor, report
+- `sample_data/` one real run from the Google dataset (CC BY 4.0), used by the quickstart
 - `results/` CSVs, summary and figure from the full run
 
 ## Limits
